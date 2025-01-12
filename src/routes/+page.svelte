@@ -1,5 +1,6 @@
 <script lang="ts">
-	import Counter from './Counter.svelte';
+	import Counter from '../components/counter/Counter.svelte';
+	import Timer from '../components/globe/Timer.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcomeFallback from '$lib/images/svelte-welcome.png';
 </script>
@@ -25,7 +26,8 @@
 		try editing <strong>src/routes/+page.svelte</strong>
 	</h2>
 
-	<Counter />
+	<!-- <Counter /> -->
+	 <Timer/>
 </section>
 
 <style>
