@@ -1,14 +1,16 @@
 <script lang="ts">
 	import { Spring, Tween } from 'svelte/motion';
 	import moment from 'moment';
-	let currentDate = moment();
 
-	let year = $state(currentDate.year()),
-		month = $state(currentDate.month() + 1),
-		day = $state(currentDate.date()),
-		hour = $state(currentDate.hour()),
-		minute = $state(currentDate.minute()),
-		second = $state(currentDate.second());
+	let {
+		currentDate = moment(),
+		year = currentDate.year(),
+		month = currentDate.month() + 1,
+		day = currentDate.date(),
+		hour = currentDate.hour(),
+		minute = currentDate.minute(),
+		second = currentDate.second()
+	} = $props();
 
 	const springYear = new Spring(year),
 		springMonth = new Spring(month),
@@ -58,6 +60,7 @@
 		</div>
 		<div class="counter-digits month" style="transform: translate(0, {100 * offsetMonth}%)">
 			<strong class="hidden" aria-hidden="true">{Math.floor(springMonth.current + 1)}</strong>
+			<strong class:hidden={springMonth.current>=10}>0</strong>
 			<strong>{Math.floor(springMonth.current)}</strong>
 		</div>
 		<div class="counter-digits">
@@ -65,6 +68,7 @@
 		</div>
 		<div class="counter-digits day" style="transform: translate(0, {100 * offsetDay}%)">
 			<strong class="hidden" aria-hidden="true">{Math.floor(springDay.current + 1)}</strong>
+			<strong class:hidden={springDay.current>=10}>0</strong>
 			<strong>{Math.floor(springDay.current)}</strong>
 		</div>
 		<div class="counter-digits">
@@ -72,6 +76,7 @@
 		</div>
 		<div class="counter-digits hour" style="transform: translate(0, {100 * offsetHour}%)">
 			<strong class="hidden" aria-hidden="true">{Math.floor(springHour.current + 1)}</strong>
+			<strong class:hidden={springHour.current>=10}>0</strong>
 			<strong>{Math.floor(springHour.current)}</strong>
 		</div>
 		<div class="counter-digits">
@@ -79,6 +84,7 @@
 		</div>
 		<div class="counter-digits minute" style="transform: translate(0, {100 * offsetMinute}%)">
 			<strong class="hidden" aria-hidden="true">{Math.floor(springMinute.current + 1)}</strong>
+			<strong class:hidden={springMinute.current>=10}>0</strong>
 			<strong>{Math.floor(springMinute.current)}</strong>
 		</div>
 		<div class="counter-digits">
@@ -86,6 +92,7 @@
 		</div>
 		<div class="counter-digits second" style="transform: translate(0, {100 * offsetSecond}%)">
 			<strong class="hidden" aria-hidden="true">{Math.floor(springSecond.current + 1)}</strong>
+			<strong class:hidden={springSecond.current>=10}>0</strong>
 			<strong>{Math.floor(springSecond.current)}</strong>
 		</div>
 	</div>
